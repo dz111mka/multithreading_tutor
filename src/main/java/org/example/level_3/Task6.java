@@ -19,6 +19,8 @@ public class Task6 {
             for (int i = 1; i <= 100; i++) {
                 try {
                     buffer.put(i);
+                    System.out.println("Поток 1 положил значение " + i + " в буффер");
+                    Thread.sleep(5);
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
@@ -28,7 +30,8 @@ public class Task6 {
         Thread consumer = new Thread(() -> {
             for (int i = 1; i <= 100; i++) {
                 try {
-                    System.out.println(buffer.get());
+                    System.out.println("Поток 2 забрал значение " + buffer.get() + " из буффера");
+                    Thread.sleep(5);
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
