@@ -1,4 +1,4 @@
-package org.example.level_1;
+package org.example.double1.level_1;
 
 /**
 *Уровень 1 — база потоков

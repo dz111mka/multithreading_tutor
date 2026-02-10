@@ -1,4 +1,4 @@
-package org.example.level_2;
+package org.example.double1.level_2;
 
 /**
  * Задача 5. Исправь deadlock

@@ -1,4 +1,4 @@
-package org.example.level_1;
+package org.example.double1.level_1;
 
 /**
  * *Задача 2. Последовательный вывод

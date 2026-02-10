@@ -1,4 +1,4 @@
-package org.example.level_3;
+package org.example.double1.level_3;
 
 /**
  Задача 7. Чёт / Нечёт
