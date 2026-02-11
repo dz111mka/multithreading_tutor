@@ -2,6 +2,7 @@ package org.example.double2.level_5;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
@@ -18,30 +19,26 @@ public class Task9 {
 
     public static AtomicLong COUNTER = new AtomicLong(0L);
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
         ExecutorService executorService = Executors.newFixedThreadPool(4);
 
         for (int i = 1; i <= 10; i++) {
             int finalI = i;
             executorService.submit(() -> {
-                long l = factorialIterative(finalI);
-                COUNTER.addAndGet(l);
+                factorialIterative(finalI);
             });
         }
         executorService.shutdown();
+        executorService.awaitTermination(1, TimeUnit.MINUTES);
         System.out.println(COUNTER);
     }
 
-    public synchronized static long factorialIterative(int n) {
-        if (n < 0) {
-            throw new IllegalArgumentException("Факториал определен только для неотрицательных чисел");
-        }
-
+    public static void factorialIterative(int n) {
         long result = 1;
         for (int i = 1; i <= n; i++) {
             result *= i;
         }
-        return result;
+        COUNTER.addAndGet(result);
     }
 }
