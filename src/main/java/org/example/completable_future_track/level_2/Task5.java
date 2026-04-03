@@ -1,7 +1,7 @@
 package org.example.completable_future_track.level_2;
 
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
-import java.util.stream.Stream;
 
 /**
  * Создай 5 CompletableFuture.
@@ -30,5 +30,23 @@ public class Task5 {
                 );
         System.out.println(future5.join());
 
+
+        List<CompletableFuture<Integer>> futures = List.of(
+                CompletableFuture.supplyAsync(() -> 1),
+                CompletableFuture.supplyAsync(() -> 2),
+                CompletableFuture.supplyAsync(() -> 3),
+                CompletableFuture.supplyAsync(() -> 123),
+                CompletableFuture.supplyAsync(() -> 421)
+        );
+
+        CompletableFuture<Integer> result =
+                CompletableFuture.allOf(futures.toArray(new CompletableFuture[0]))
+                        .thenApply(v ->
+                                futures.stream()
+                                        .map(CompletableFuture::join)
+                                        .reduce(0, Integer::sum)
+                        );
+
+        System.out.println(result.join());
     }
 }
