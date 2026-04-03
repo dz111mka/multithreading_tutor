@@ -56,7 +56,6 @@ class LoopWorker {
         System.out.println(Thread.currentThread().getName() + " закончил работу");
         this.thread.interrupt();
     }
-
 }
 
 
